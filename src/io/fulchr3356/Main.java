@@ -5,6 +5,38 @@ import java.util.*;
 
 public class Main {
 
+
+    public String convert(String s, int numRows) {
+        if(numRows == 1)
+            return s;
+        int length = (int) Math.ceil((s.length() / 2.0));
+        char[][] zigzag = new char[numRows][length];
+        int column = 0;
+        int row = 0;
+        boolean backToZero = false;
+        for(int i = 1; i <= s.length(); i ++){
+            zigzag[row][column] = s.charAt(i-1);
+            if( row == numRows -1)
+                backToZero = true;
+            if(row == 0)
+                backToZero = false;
+            if(backToZero){
+                row--;
+                column++;
+            }else{
+                row++;
+            }
+
+        }
+        StringBuilder converted = new StringBuilder();
+        for(char [] n : zigzag)
+            for(char c: n)
+                if(c != '\u0000')
+                    converted.append(c);
+
+        return converted.toString();
+    }
+
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         ArrayList<Integer> list = new ArrayList<>();
         for(int i: nums1)
