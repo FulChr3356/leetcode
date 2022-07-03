@@ -171,6 +171,35 @@ class Solution {
         return true;
     }
 
+    static boolean isPalindromic(String s ){
+        for(int i = 0; i < s.length() / 2; i++){
+            if(s.charAt(i) != s.charAt(s.length() -i - 1)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String longestPalindrome(String s) {
+        String currMax = "";
+        String tempString;
+        for(int i = 0; i < s.length(); i++){
+            for(int k = s.length(); k >= i; k--){
+                if(k - i < currMax.length())
+                    continue;
+                tempString = s.substring(i,k);
+                if(isPalindromic(tempString)){
+                    if(tempString.length() == s.length())
+                        return tempString;
+                    currMax = tempString;
+                }
+
+            }
+
+        }
+        return currMax;
+    }
+
     public static void main(String[] args) {
 
 //
