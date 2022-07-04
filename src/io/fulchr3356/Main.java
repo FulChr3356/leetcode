@@ -6,6 +6,39 @@ import java.util.*;
 public class Main {
 
 
+
+    static boolean repeatings(String s){
+        HashMap<Character,Integer> characters = new HashMap<>();
+        // ArrayList<Character> characters = new ArrayList<>();
+        for(char c: s.toCharArray()){
+            if(characters.containsKey(c))
+                return false;
+            else
+                characters.put(c,0);
+        }
+        return true;
+    }
+    public int lengthOfLongestSubstrings(String s) {
+        String tempString = "";
+        String currMax = "";
+        for(int i = 0; i < s.length(); i++){
+            for(int k = s.length(); k >= i; k--){
+                if(k - i < currMax.length())
+                    continue;
+                tempString = s.substring(i,k);
+                if(repeatings(tempString)){
+                    if(tempString.length() == s.length())
+                        return tempString.length();
+                    currMax = tempString;
+                }
+
+            }
+        }
+        return currMax.length();
+
+    }
+
+
     public String convert(String s, int numRows) {
         if(numRows == 1)
             return s;
