@@ -4,7 +4,27 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
-
+    public int reverse(int x) {
+        boolean negative = false;
+        String number = String.valueOf(x);
+        StringBuilder builder = new StringBuilder();
+        for(char c: number.toCharArray()){
+            if(c == '-'){
+                negative = true;
+                continue;
+            }
+            builder.append(c);
+        }
+        try{
+            if(negative)
+                return Integer.parseInt("-" + builder.reverse().toString());
+            else
+                return Integer.parseInt(builder.reverse().toString());
+        }
+        catch(NumberFormatException e){
+            return 0;
+        }
+    }
 
 
     static boolean repeatings(String s){
