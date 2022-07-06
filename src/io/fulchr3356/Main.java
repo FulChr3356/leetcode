@@ -4,6 +4,14 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+
+    public boolean isPalindrome(int x) {
+        String num = String.valueOf(x);
+        for(int i = 0; i < num.length() / 2; i++)
+            if(num.charAt(i) != num.charAt(num.length()-i - 1))
+                return false;
+        return true;
+    }
     public int reverse(int x) {
         boolean negative = false;
         String number = String.valueOf(x);
