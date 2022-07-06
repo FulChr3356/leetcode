@@ -4,6 +4,41 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+
+    public int myAtoi(String s) {
+        StringBuilder number = new StringBuilder();
+        for(char c: s.toCharArray()){
+            if(number.length() != 0 && !Character.isDigit(c))
+                break;
+            if(c == '\u0000' || c == ' ')
+                continue;
+            number.append(c);
+        }
+        String str = number.toString();
+        if(str == "")
+            return 0;
+        if(str.charAt(0) == '+')
+            str = str.substring(1,str.length());
+        if(!str.matches("-?[0-9]+"))
+            return 0;
+
+        try{
+            return new BigDecimal(str).setScale(0,RoundingMode.HALF_UP).intValueExact();
+        }catch(NumberFormatException  | ArithmeticException e ){
+            try{
+                if(str.charAt(0) == '-')
+                    return -2147483648;
+                if(str.charAt(0) == '+' || str.matches("[0-9]+"))
+                    return 2147483647;
+                if(!str.matches("-?[0-9]+"))
+                    return 0;
+            }catch(NumberFormatException e2 ){
+                return 0;
+            }
+        }
+        return 0;
+    }
+
     static boolean repeating(String s){
         HashMap<Character,Integer> characters = new HashMap<>();
         // ArrayList<Character> characters = new ArrayList<>();
