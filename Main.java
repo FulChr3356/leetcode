@@ -5,6 +5,37 @@ import java.util.*;
 
 public class Main {
 
+
+    static int findLongest(String [] strs){
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+        char currChar = '\u0000';
+        for(String str: strs)
+            if(str.length() < min)
+                min = str.length();
+
+        for(int i = 0; i < min; i++){
+            for(String str: strs){
+                if(currChar == '\u0000'){
+                    currChar = str.charAt(i);
+                    continue;
+                }
+                if(currChar != str.charAt(i))
+                    return max;
+            }
+            max ++;
+            currChar = '\u0000';
+        }
+        return max;
+    }
+    public String longestCommonPrefix(String[] strs) {
+        int max = findLongest(strs);
+        if(max != 0)
+            return strs[0].substring(0,max);
+        else
+            return "";
+    }
+
     public int myAtoi(String s) {
         StringBuilder number = new StringBuilder();
         for(char c: s.toCharArray()){
