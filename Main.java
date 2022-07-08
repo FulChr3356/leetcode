@@ -6,6 +6,72 @@ import java.util.*;
 public class Main {
 
 
+    static int findMaxHeight(int[] height){
+        int max = 0;
+        for(int i: height)
+            if(i > max)
+                max = i;
+        return max;
+    }
+
+    static boolean inRange(int i, int [] range){
+        return i > range[0] && i < range[1];
+    }
+
+    static boolean foundMax(int begIndex,int [] heights){
+        for(int i = begIndex; i < heights.length; i++ )
+            if(heights[begIndex] < heights[i])
+                return false;
+        return true;
+    }
+
+    static int volume(int i,int k, int[] height){
+        if(height[k] <= height[i])
+            return (k - i) * height[k];
+        else
+            return  (k - i) * height[i];
+    }
+
+
+    public int maxArea(int[] height) {
+        int current;
+        int max = 0;
+        int count = 0;
+        int maxHeight = 0;
+        int maxIndex = 0;
+        int length = height.length - 1;
+        // int maxHeight = findMaxHeight(height);
+
+        int [] maxLine = new int [2];
+        for(int i = 0; i < height.length; i++){
+            for(int k = i; k < height.length; k++){
+                if(height[i] < height[k] )
+                    if(volume(i,length,height) < volume(k,length,height)){
+                        // System.out.println("Breaking out of i: " + i + " and k: " + k);
+                        break;
+                    }
+                if(inRange(i,maxLine) && inRange(k,maxLine) && height[k] < maxHeight)
+                    continue;
+
+                current = volume(i,k,height);
+                if(current > max){
+                    max = current;
+                    maxLine[0] = i;
+                    maxLine[1] = k;
+                    maxHeight = height[k];
+                    maxIndex = k;
+                }
+                count++;
+
+            }
+            System.out.println("Count: " + count);
+            if(foundMax(i,height))
+                return max;
+        }
+        // System.out.println(count);
+        return max;
+    }
+
     static int findLongest(String [] strs){
         int min = Integer.MAX_VALUE;
         int max = 0;
