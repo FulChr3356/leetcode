@@ -4,6 +4,56 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+    class MyQueue {
+        private Stack<Integer> stack;
+        private Stack<Integer> stack2;
+        private Integer top = null;
+        public MyQueue() {
+            stack = new Stack();
+            stack2 = new Stack();
+        }
+
+        public void push(int x) {
+            if(stack.empty())
+                top = x;
+            stack.push(x);
+
+            // System.out.println("pushing: " + x + " top: " + top);
+        }
+
+        public int pop() {
+            Integer i = null;
+            Integer n = null;
+
+            while(!stack.empty()){
+                stack2.push(stack.pop());
+            }
+            i = stack2.pop();
+            if(!stack2.empty()){
+                top = stack2.pop();
+                stack.push(top);
+            }
+            else
+                top = null;
+
+            while(!stack2.empty()){
+                stack.push(stack2.pop());
+            }
+            // System.out.println("popping: " + i + " new top: " + top);
+            stack2 = new Stack();
+            return i;
+
+        }
+
+        public int peek() {
+
+            return top;
+        }
+
+        public boolean empty() {
+            return stack.empty();
+        }
+    }
 
     static ArrayList<Integer> toList(ListNode node){
         ArrayList<Integer> list = new ArrayList<>();
