@@ -5,6 +5,33 @@ import java.util.*;
 
 public class Main {
 
+    static ArrayList<Integer> toList(ListNode node){
+        ArrayList<Integer> list = new ArrayList<>();
+        while(node != null){
+            list.add(node.val);
+            node = node.next;
+        }
+        return list;
+    }
+
+    static ListNode toNode(ArrayList<Integer> list){
+        ListNode node = new ListNode();
+        ListNode head = node;
+        for(int i: list){
+            node.next = new ListNode(i);
+            node = node.next;
+        }
+
+        return head.next;
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ArrayList<Integer> list = new ArrayList(toList(list1));
+        list.addAll(toList(list2));
+        Collections.sort(list);
+        return toNode(list);
+    }
+
 
     static int findMaxHeight(int[] height){
         int max = 0;
