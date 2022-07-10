@@ -5,6 +5,19 @@ import java.util.*;
 
 public class Main {
 
+    public boolean hasCycle(ListNode head) {
+        HashMap<ListNode,Integer> map = new HashMap<>();
+        while(head != null){
+            if(map.containsKey(head)){
+                return true;
+            }
+            else
+                map.put(head,head.val);
+            head = head.next;
+        }
+        return false;
+    }
+
     public boolean isPalindrome(int x) {
         String num = String.valueOf(x);
         for(int i = 0; i < num.length() / 2; i++)
