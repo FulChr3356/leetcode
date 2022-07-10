@@ -4,6 +4,30 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        Map<ListNode,ListNode> mapA = new LinkedHashMap<>();
+        Map<ListNode,ListNode> mapB = new LinkedHashMap<>();
+        ListNode node = null;
+        while(headA != null){
+            mapA.put(headA,headA.next);
+            headA = headA.next;
+        }
+        while(headB != null){
+            mapB.put(headB,headB.next);
+            headB = headB.next;
+        }
+
+        for(ListNode key: mapA.keySet())
+            if(mapB.containsKey(key))
+                return key;
+
+        for(ListNode key: mapB.keySet())
+            if(mapA.containsKey(key))
+                return key;
+
+
+        return null;
+    }
 
     public boolean hasCycle(ListNode head) {
         HashMap<ListNode,Integer> map = new HashMap<>();
