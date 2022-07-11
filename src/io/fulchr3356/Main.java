@@ -4,6 +4,32 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+    public int removeDuplicates(int[] nums) {
+        int currInt = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 0; i < nums.length; i++){
+            if(i == 0){
+                list.add(nums[i]);
+                currInt = nums[i];
+                continue;
+            }
+            if(currInt == nums[i])
+                continue;
+            else{
+                currInt = nums[i];
+                list.add(nums[i]);
+            }
+
+
+
+        }
+        for(int i = 0; i < list.size(); i++)
+            nums[i] = list.get(i);
+
+        return list.size();
+
+    }
+
 
     public int majorityElement(int[] nums) {
         HashMap<Integer,Integer> map = new HashMap<>();
