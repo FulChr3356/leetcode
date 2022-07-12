@@ -4,6 +4,40 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
+
+    public int searchInsert(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length;
+        int mid = start + (end - start)/2;
+        int lastMid = -1;
+        if(target > nums[end - 1])
+            return end;
+        if(target < nums[0])
+            return 0;
+
+        if(nums[0] == target)
+            return 0;
+
+        while(mid != start && mid != end){
+            if(target == nums[mid])
+                return mid;
+            else if(target > nums[mid]){
+                start = mid;
+                mid = start + (end - start)/2;
+            }
+            else{
+                end = mid;
+                mid = start + (end - start)/2;
+            }
+
+        }
+        for(int i = 0; i < nums.length; i++)
+            if(nums[i] > target)
+                return i;
+
+        return nums.length;
+    }
+
     public int removeDuplicates(int[] nums) {
         int currInt = 0;
         ArrayList<Integer> list = new ArrayList<>();
