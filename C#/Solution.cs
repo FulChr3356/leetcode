@@ -1,4 +1,10 @@
 public class Solution {
+
+    public int StrStr(string haystack, string needle) {
+        return haystack.IndexOf(needle);
+    }
+
+    
     public int RemoveElement(int[] nums, int val) {
         int size = nums.Length;
         bool replace = false;
