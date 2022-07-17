@@ -11,10 +11,11 @@ public class Solution {
         
         foreach(int[] duos in map.Keys){
             //TODO Grab values not indexes
-            k = nums.Select((b,i) => b + duos[0] + duos[1] == 0 ? i : -1).Where(i => i != -1).ToArray();
+            k = nums.Select((b,i) => b + nums[duos[0]] + nums[duos[1]] == 0 ? i : -1).Where(i => i != -1 ).ToArray();
             foreach (int i in k){
-                if(i != duos[0] && i != duos[1])
+                if(i != duos[0] && i != duos[1]){
                     list.Add(new List<int> {nums[duos[0]],nums[duos[1]],nums[i]} );
+                }
             }
         }
         return list;
