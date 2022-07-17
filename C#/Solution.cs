@@ -3,16 +3,18 @@ public class Solution {
         Dictionary<int[],int> map = new Dictionary<int[],int>();
         for(int i = 0; i < nums.Length -1; i++){
              for(int j = i + 1; j < nums.Length; j++){
-                map.add(new int[] {i,j},nums[i] + nums[j]);
+                map.Add(new int [] {i,j},nums[i] + nums[j]);
              }
         }
-        IList<IList<int>> list = new IIList<IList<int>>();
+        IList<IList<int>> list = new List<IList<int>>();
         int[] k;
-        foreach(int[] duos in list.Keys){
+        
+        foreach(int[] duos in map.Keys){
+            //TODO Grab values not indexes
             k = nums.Select((b,i) => b + duos[0] + duos[1] == 0 ? i : -1).Where(i => i != -1).ToArray();
             foreach (int i in k){
                 if(i != duos[0] && i != duos[1])
-                    list.add(new int [] {duos[0],duos[1], i} );
+                    list.Add(new List<int> {nums[duos[0]],nums[duos[1]],nums[i]} );
             }
         }
         return list;
