@@ -1,22 +1,27 @@
 public class Solution {
     public IList<IList<int>> ThreeSum(int[] nums) {
-        Dictionary<int[],int> map = new Dictionary<int[],int>();
+        IList<IList<int>> list = new List<IList<int>>();
+        List<int> newList;
+        bool isEqual = false;
         for(int i = 0; i < nums.Length -1; i++){
              for(int j = i + 1; j < nums.Length; j++){
-                map.Add(new int [] {i,j},nums[i] + nums[j]);
-             }
-        }
-        IList<IList<int>> list = new List<IList<int>>();
-        int[] k;
-        
-        foreach(int[] duos in map.Keys){
-            //TODO Grab values not indexes
-            k = nums.Select((b,i) => b + nums[duos[0]] + nums[duos[1]] == 0 ? i : -1).Where(i => i != -1 ).ToArray();
-            foreach (int i in k){
-                if(i != duos[0] && i != duos[1]){
-                    list.Add(new List<int> {nums[duos[0]],nums[duos[1]],nums[i]} );
+                for(int k = j; k <nums.Length; k++){
+                    if(i != j && k!= i && j!=k )
+                        if(nums[i] + nums[j] + nums[k] == 0){
+                            newList = new List<int> {nums[i], nums[j], nums[k]};
+                            foreach (List<int> subList in list){
+                                if(Enumerable.SequenceEqual(subList.OrderBy(e => e), newList.OrderBy(e => e))){
+                                    isEqual = true;
+                                    break;
+                                }
+                                }
+                            
+                            if(!isEqual)
+                                list.Add(newList);
+                            isEqual = false;
+                        }
                 }
-            }
+             }
         }
         return list;
     }
