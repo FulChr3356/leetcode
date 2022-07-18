@@ -1,4 +1,9 @@
 public class Solution {
+public int LengthOfLastWord(string s) {
+        String [] strings = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return strings[strings.Length -1].Length;
+    }
+
     public IList<IList<int>> ThreeSum(int[] nums) {
         IList<IList<int>> list = new List<IList<int>>();
         List<int> newList;
