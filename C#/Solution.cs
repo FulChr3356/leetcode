@@ -1,4 +1,24 @@
 public class Solution {
+    public int[] PlusOne(int[] digits) {
+        int i = digits.Length - 1;
+        while(i >= 0){
+            if(digits[i] < 9){
+                digits[i] = digits[i] + 1;
+                return digits;
+            }
+            digits[i] = 0;
+            if(i == 0){
+            int [] newArray = new int[digits.Length + 1];
+            newArray[0] = 1;
+            return newArray;
+            }
+            i--;
+                
+        }
+            
+        return digits;
+        
+    }
 public int LengthOfLastWord(string s) {
         String [] strings = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         return strings[strings.Length -1].Length;
