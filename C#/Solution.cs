@@ -1,4 +1,7 @@
 public class Solution {
+    public int Search(int[] nums, int target) {
+        return Array.IndexOf(nums,target);
+    }
     public int[] PlusOne(int[] digits) {
         int i = digits.Length - 1;
         while(i >= 0){
