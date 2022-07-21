@@ -1,4 +1,34 @@
 public class Solution {
+
+    public ListNode RemoveNthFromEnd(ListNode head, int n) {
+        Dictionary<int,ListNode> nodes = new Dictionary<int,ListNode>();
+        ListNode currHead = head;
+        ListNode currNode;
+        int i = 1;
+        int nullInt;
+        while(head != null){
+          nodes.Add(i,head);
+          head = head.next;  
+          i++;  
+        }
+        
+        currNode = nodes[i - n];
+        if(currNode.next == null){
+            if(i - n == 1)
+                return null;
+            else
+                nodes[i - n - 1].next = nodes[i - n].next;
+        }
+        else{
+            if(i - n == 1){
+                currHead = nodes[i - n + 1];
+            }
+            else{
+                nodes[i - n - 1].next = nodes[i - n + 1];
+            }
+        }
+            return currHead;
+    }
     public int Search(int[] nums, int target) {
         return Array.IndexOf(nums,target);
     }
