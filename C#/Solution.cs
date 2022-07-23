@@ -1,5 +1,29 @@
 public class Solution {
-
+    public ListNode SwapPairs(ListNode head) {
+        if(head == null)
+            return head;
+        if(head.next == null)
+            return head;
+        ListNode tempHead = head.next;
+        ListNode nextNode;
+        ListNode prevNode = null;
+        while(head != null){
+            if(head.next == null)
+                return tempHead;
+             // Console.Write(" head:  " + head.val + " head.next: " + head.next.val);
+            nextNode = head.next;
+            head.next = nextNode.next;
+            nextNode.next = head;
+            if(prevNode != null){
+                prevNode.next = nextNode;
+            }
+            prevNode = head;
+            head = head.next;
+        }
+        
+        
+        return tempHead;
+    }
     public ListNode RemoveNthFromEnd(ListNode head, int n) {
         Dictionary<int,ListNode> nodes = new Dictionary<int,ListNode>();
         ListNode currHead = head;
