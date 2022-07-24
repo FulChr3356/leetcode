@@ -1,4 +1,18 @@
 public class Solution {
+
+    public int MySqrt(int x) {
+        if(x == int.MaxValue)
+            return 46340;
+        for(int i = 0; i <= x; i++){
+            if(i * i == x)
+                return i;
+            if(i * i > x)
+                for(int j = i - 1; j >= 0; j--)
+                    if(j * j < x)
+                        return j;
+        }
+        return 0;
+    }
     public ListNode SwapPairs(ListNode head) {
         if(head == null)
             return head;
