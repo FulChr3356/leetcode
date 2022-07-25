@@ -1,5 +1,36 @@
 public class Solution {
-
+     public ListNode DeleteDuplicates(ListNode head) {
+        ListNode prevNode = null;
+        ListNode headNode = head;
+        if(head == null)
+            return head;
+        if(head.next == null)
+            return head;
+        while(head != null){
+            if(head.next == null){
+                if(head.val == prevNode.val){
+                    prevNode.next = null;
+                    break;
+                }
+            }
+            if(prevNode == null){
+                prevNode = head;
+                head = head.next;
+                continue;
+            }
+            if(head.val == prevNode.val){
+                head = head.next;
+                continue;
+            }
+            else{
+                prevNode.next = head;
+                prevNode = head;
+                head = head.next;
+            }
+        }
+        
+            return headNode;
+    }
     public int MySqrt(int x) {
         if(x == int.MaxValue)
             return 46340;
